@@ -5,7 +5,7 @@
 1. `npm install`
 2. replace node_module/@kadenceproject/kadence/package.json with kadence-browser-package.json and rename it to package.json (this is to disable two plugins that are not supported by browserify)
 ```
-mv kadence-browser-package.json node_modules/@kadenceproject/kadence/package.json
+cp kadence-browser-package.json node_modules/@kadenceproject/kadence/package.json
 ```
 
 3. `npm run run-demo`
