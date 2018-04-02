@@ -10,3 +10,13 @@ And then redirect browser to `localhost:8080/index.html`.
 
 ## Probable Issues With Your Installing:
 You might face similar issues to me about complaints from `node-gyp`. If this happens, set your node python version to 2.7 (and change it back when you're done).
+
+## Changes to package.json
+For the time being, while this package is being developed, it's necessary to add this entry to the kadence package.json:
+```
+"browser": {
+    "scrypt": false,
+    "./lib/plugin-traverse.js": false
+  },
+```
+This is the only difference applied in kadence-browser-package.json (at the time of writing) but imports may get updated.
