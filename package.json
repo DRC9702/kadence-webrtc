@@ -1,18 +1,18 @@
 {
-  "name": "p1-kadencedemo",
+  "name": "kadence-webrtc",
   "version": "1.0.0",
-  "description": "simple kadence demo using http",
-  "main": "FileServer.js",
-  "browser": "BrowserDemo.js",
+  "description": "simple kadence demo using webrtc",
+  "main": "./example/signal-server.js",
+  "browser": "./example/browser-demo.js",
   "scripts": {
-    "run-demo": "rm example/bundle.js ; browserify --entry ./example/browser-demo.js > ./example/bundle.js && node ./example/signal-server.js"
+    "demo": "rm ./example/bundle.js ; browserify --entry ./example/browser-demo.js > ./example/bundle.js && node ./example/signal-server.js"
   },
   "keywords": [
-    "http",
+    "webrtc",
     "demo",
     "kadence"
   ],
-  "author": "David Rincon-Cruz",
+  "author": "David Rincon-Cruz & Chengtian Xu",
   "license": "ISC",
   "dependencies": {
     "@kadenceproject/kadence": "^3.2.2",
