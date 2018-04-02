@@ -1,18 +1,11 @@
-// Import dependencies
 const bunyan = require('bunyan');
-// const levelup = require('levelup');
-// const leveldown = require('leveldown'); //THIS REQUIRES IS NOT WORKING
-// const encoding = require('encoding-down');
-// var level = require('level-browserify')
-var level = require('level-browserify');
+const level = require('level-browserify');
 const kadence = require('@kadenceproject/kadence');
-var WebRTCTransport = require('../');
+var WebRTCTransport = require('../lib/transport');
 
 var node;
-var host='localhost';
-var port=1337;
 
-document.querySelector('#makeNode').addEventListener('submit', function (e) {
+document.querySelector('#makeNode').addEventListener('submit', (e) => {
   // Prevent page refresh
   e.preventDefault();
 
@@ -22,24 +15,22 @@ document.querySelector('#makeNode').addEventListener('submit', function (e) {
   node = new kadence.KademliaNode({
     identity: id,
     transport: new WebRTCTransport({nodeID: id}),
-    // storage: levelup(encoding(leveldown('storage.db'))), //CAN NOT USE LEVELDOWN YET
     storage: level('storage.db'),
-    // contact: { hostname: host, port: port }
   });
 
   alert("Node launched!");
 
-  document.getElementById("nodeid").innerHTML = node.identity.toString('hex');
+  // document.getElementById("nodeid").innerHTML = node.identity.toString('hex');
 });
 
-document.querySelector('#joinNode').addEventListener('submit', function (e) {
+document.querySelector('#joinNode').addEventListener('submit', (e) => {
   // Prevent page refresh
   e.preventDefault();
 
   var targetName = document.getElementById("targetName").value;
   var targetId = kadence.utils.hash160(targetName).toString('hex');
 
-  console.log(targetId);
+  // console.log(targetId);
 
   node.join([targetId,
       {}],
@@ -49,38 +40,38 @@ document.querySelector('#joinNode').addEventListener('submit', function (e) {
     });
 });
 
-document.querySelector('#putKV').addEventListener('submit', function (e) {
+document.querySelector('#putKV').addEventListener('submit', (e) => {
   e.preventDefault();
 
-  var key = document.getElementById("keyName").value;
-  var val = document.getElementById("valName").value;
-  console.log('Putting key:' + key + "and val:" + val);
+  const key = document.getElementById("keyName").value;
+  const val = document.getElementById("valName").value;
+  console.log(`Putting key: ${key} and val: ${val}`);
 
   hashedKey = kadence.utils.hash160(key);
-  console.log("hashedKey: " + hashedKey.toString('hex'));
+  // console.log("hashedKey: " + hashedKey.toString('hex'));
 
-  node.iterativeStore(hashedKey, val, function(err, stored) {
+  node.iterativeStore(hashedKey, val, (err, stored) => {
     if(err) {
       console.log(err);
       return;
     }
-    console.log("Stored: {" + key + ": " + val + "} - " + stored);
+    console.log(`Stored: { ${key} : ${val} }`);
   });
 });
 
-document.querySelector('#getKV').addEventListener('submit', function (e) {
+document.querySelector('#getKV').addEventListener('submit', (e) => {
   e.preventDefault();
 
-  var key = document.getElementById("key").value;
-  console.log('Putting key:' + key);
+  const key = document.getElementById("key").value;
+  console.log(`Putting key: ${key}`);
 
   hashedKey = kadence.utils.hash160(key);
-  console.log("hashedKey: " + hashedKey.toString('hex'));
-  node.iterativeFindValue(hashedKey, function(err, result, contacts) {
+  // console.log(`hashedKey:  ${hashedKey.toString('hex')}`);
+  node.iterativeFindValue(hashedKey, (err, result, contacts) => {
     if(err) {
       console.log(err);
       return;
     }
-    console.log("Value: " + result.value + " - " + result.publisher);
+    console.log(`Value: ${result.value} - ${result.publisher}`);
   });
 });

@@ -8,7 +8,7 @@
 cp kadence-browser-package.json node_modules/@kadenceproject/kadence/package.json
 ```
 
-3. `npm run run-demo`
+3. `npm run demo`
 
 And then redirect browser to `localhost:8080/example/index.html`.
 
