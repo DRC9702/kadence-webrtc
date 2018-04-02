@@ -5,7 +5,7 @@
   "main": "FileServer.js",
   "browser": "BrowserDemo.js",
   "scripts": {
-    "run-demo": "browserify --entry ./example/browser-demo.js > ./example/bundle.js && node ./example/signal-server.js"
+    "run-demo": "rm example/bundle.js ; browserify --entry ./example/browser-demo.js > ./example/bundle.js && node ./example/signal-server.js"
   },
   "keywords": [
     "http",
