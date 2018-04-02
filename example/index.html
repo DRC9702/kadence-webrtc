@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kadence Demo</title>
+</head>
+<body>
+    <h1>Kadence Demo</h1>
+    <p>This is a kadence demo by David Rincon-Cruz and Chengtian Xu</p>
+    <br>
+    <p>Trying to use http transport</p>
+    <br>
+
+    <form id='makeNode'>
+        <label for="name">Node Name</label>
+        <input id="nodeName" name="name" value="Name1">
+        <button type="submit">Launch Node</button>
+    </form>
+
+    <p>Node Id: </p>
+    <p id="nodeid"></p>
+
+    <form id='joinNode'>
+        <label for="name">Join</label>
+        <input id="targetName" name="targetName" value="Name2">
+        <button type="submit">Join</button>
+    </form>
+
+    <form id='putKV'>
+        <label for="key">Key</label>
+        <input id="keyName" name="keyName" value="foo">
+        <label for="val">Value</label>
+        <input id="valName" name="valName" value="bar">
+        <button type="submit">put</button>
+    </form>
+
+    <form id='getKV'>
+        <label for="key">Key</label>
+        <input id="key" name="key" value="foo">
+        <button type="submit">get</button>
+    </form>
+
+
+    <!--<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="bundle.js"></script>
+</body>
+</html>
