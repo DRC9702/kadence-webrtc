@@ -17,6 +17,7 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
     transport: new WebRTCTransport({nodeID: id}),
     storage: level('storage.db'),
   });
+  node.listen();
 
   alert("Node launched!");
 
@@ -63,7 +64,7 @@ document.querySelector('#getKV').addEventListener('submit', (e) => {
   e.preventDefault();
 
   const key = document.getElementById("key").value;
-  console.log(`Putting key: ${key}`);
+  console.log(`Getting key: ${key}`);
 
   hashedKey = kadence.utils.hash160(key);
   // console.log(`hashedKey:  ${hashedKey.toString('hex')}`);
