@@ -20,6 +20,7 @@
     "bunyan": "^1.8.12",
     "chai": "^4.1.2",
     "encoding-down": "^4.0.0",
+    "externalip": "^1.0.2",
     "level-browserify": "^1.1.1",
     "level-js": "^2.2.4",
     "leveldown": "^3.0.0",

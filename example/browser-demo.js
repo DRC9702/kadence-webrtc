@@ -73,6 +73,6 @@ document.querySelector('#getKV').addEventListener('submit', (e) => {
       console.log(err);
       return;
     }
-    console.log(`Value: ${result.value} - ${result.publisher}`);
+    alert(`Value: ${result.value} - ${result.publisher}`);
   });
 });
