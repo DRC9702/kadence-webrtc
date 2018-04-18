@@ -20,6 +20,7 @@ externalip(function (err, ip) {
     console.log(request.url);
     fileServer.serve(request, response);
   }).listen(8080);
+  //}).listen(8080,ip);
 
   var ioServer = socketIO(httpServer);
   var signalServer = require('simple-signal-server')(ioServer)
@@ -37,26 +38,26 @@ externalip(function (err, ip) {
   signalServer.on('request', function (request) {
     console.log("Request: " + request.initiator.id);
     console.log(request);
-    // request.forward(nodeToSocket[request.receiver.id]);
+    request.forward(nodeToSocket[request.receiver.id]);
 
-    // Dispatching
-    var size = Object.keys(nodeToSocket).length;
-    console.log(size);
-    if (size !== 0) {
-      console.log(nodeArray);
-      do {
-        nodeIdRandom = randomInt(size - 1);
-        console.log(`random index: ${nodeIdRandom}`);
-        console.log(nodeToSocket[nodeArray[nodeIdRandom]]);
-        console.log(nodeToSocket[request.initiator.id]);
-      }
-      while (nodeToSocket[nodeArray[nodeIdRandom]] === nodeToSocket[request.metadata]);
-      request.forward(nodeToSocket[nodeArray[nodeIdRandom]]);
-      console.log(`Signal Server: Dispatching ${nodeIdRandom}th node in table`);
-    } else {
-      console.log("Empty Network");
-      // should return an error to the request initiator
-    }
+    // // Dispatching
+    // var size = Object.keys(nodeToSocket).length;
+    // console.log(size);
+    // if (size !== 0) {
+    //   console.log(nodeArray);
+    //   do {
+    //     nodeIdRandom = randomInt(size - 1);
+    //     console.log(`random index: ${nodeIdRandom}`);
+    //     console.log(nodeToSocket[nodeArray[nodeIdRandom]]);
+    //     console.log(nodeToSocket[request.initiator.id]);
+    //   }
+    //   while (nodeToSocket[nodeArray[nodeIdRandom]] === nodeToSocket[request.metadata]);
+    //   request.forward(nodeToSocket[nodeArray[nodeIdRandom]]);
+    //   console.log(`Signal Server: Dispatching ${nodeIdRandom}th node in table`);
+    // } else {
+    //   console.log("Empty Network");
+    //   // should return an error to the request initiator
+    // }
     
   })
 
