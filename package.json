@@ -28,6 +28,7 @@
     "mocha": "^5.0.4",
     "network": "^0.4.1",
     "node-static": "^0.7.10",
+    "random-int": "^1.0.0",
     "scrypt-js": "^2.0.3",
     "simple-signal-client": "^1.3.2",
     "simple-signal-server": "^1.5.1",
