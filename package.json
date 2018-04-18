@@ -1,0 +1,41 @@
+{
+  "name": "kadence-webrtc",
+  "version": "1.0.0",
+  "description": "simple kadence demo using webrtc",
+  "main": "./example/signal-server.js",
+  "browser": "./example/browser-demo.js",
+  "scripts": {
+    "demo": "rm ./example/bundle.js ; browserify --entry ./example/browser-demo.js > ./example/bundle.js && node ./example/signal-server.js"
+  },
+  "keywords": [
+    "webrtc",
+    "demo",
+    "kadence"
+  ],
+  "author": "David Rincon-Cruz & Chengtian Xu",
+  "license": "ISC",
+  "dependencies": {
+    "@kadenceproject/kadence": "^3.2.2",
+    "aliasify": "^2.1.0",
+    "bunyan": "^1.8.12",
+    "chai": "^4.1.2",
+    "encoding-down": "^4.0.0",
+    "externalip": "^1.0.2",
+    "level-browserify": "^1.1.1",
+    "level-js": "^2.2.4",
+    "leveldown": "^3.0.0",
+    "levelup": "^2.0.2",
+    "mocha": "^5.0.4",
+    "network": "^0.4.1",
+    "node-static": "^0.7.10",
+    "random-int": "^1.0.0",
+    "scrypt-js": "^2.0.3",
+    "simple-signal-client": "^1.3.2",
+    "simple-signal-server": "^1.5.1",
+    "sinon": "^4.4.5",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "browserify": "^16.1.1"
+  }
+}
