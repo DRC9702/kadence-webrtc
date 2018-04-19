@@ -19,6 +19,24 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
   });
   node.listen();
 
+  console.log(`node id = ${id}`);
+  node.transport.signalClient.simpleSignalClient.getRandomNodeId(id);
+  node.transport.signalClient.simpleSignalClient.on('dispatch', function(metadata){
+    console.log("Browser-Demo: caught dispatch event");
+    console.log("selfId: " + metadata.selfId + " targetId: " + metadata.targetId);
+    if (metadata.selfId !== metadata.targetId) {
+      console.log("Browser-Demo: about to join random Node given by root server");
+      node.join([metadata.targetId,
+        {}],
+      () => {
+        node.logger.info(`Connected to ${node.router.size} peers!`);
+        // console.log(`Connected to ${node.router.size} peers!`);
+    });
+    } else {
+      console.log("Browser-Demo: network does not have any nodes yet");
+    }
+  })
+
   alert("Node launched!");
 
   // document.getElementById("nodeid").innerHTML = node.identity.toString('hex');
@@ -38,7 +56,7 @@ document.querySelector('#joinNode').addEventListener('submit', (e) => {
     () => {
       node.logger.info(`Connected to ${node.router.size} peers!`);
       // console.log(`Connected to ${node.router.size} peers!`);
-    });
+  });
 });
 
 document.querySelector('#putKV').addEventListener('submit', (e) => {
