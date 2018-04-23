@@ -24,7 +24,6 @@ externalip(function (err, ip) {
   var signalServer = new SignalServer(ioServer);
 
   console.log("Listening on: http://" + ip + ":" + port);
-
 });
 
 
