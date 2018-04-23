@@ -26,7 +26,12 @@ For the time being, while this package is being developed, it's necessary to add
 This is the only difference applied in kadence-browser-package.json (at the time of writing) but imports may get updated.
 
 ## Current Issues:
-Nodes are establishing webrtc-connections between themselves, sending and receiving messages, but the nodes themselves are not reacting for some reason. 
+Demo works with nodes joining the network through other nodes.
+- **Signal Server** now only in charge of 
+  1. dispatching a node to be used as a signal server, and 
+  2. help join to a specified node if needed
+- **Signal Client** now responsible for establishing connection between nodes using socket.io
+- **Message Client** now responsible for establishing connection between nodes using existing webrtc connections
 
 ## Development ToDos:
-Once the demo can start working, the next goal is to abstract the package to generalize the signal client and server dependencies.
+- Merge **Signal Client** with **Message Client** .
