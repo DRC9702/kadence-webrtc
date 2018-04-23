@@ -10,27 +10,23 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
   e.preventDefault();
 
   var nodeName = document.getElementById("nodeName").value;
-  var id = kadence.utils.hash160(nodeName).toString('hex');
+  var nodeId = kadence.utils.hash160(nodeName).toString('hex');
 
   node = new kadence.KademliaNode({
-    identity: id,
-    transport: new WebRTCTransport({nodeID: id}),
+    identity: nodeId,
+    transport: new WebRTCTransport({nodeID: nodeId}),
     storage: level('storage.db'),
   });
   node.listen();
 
-  console.log(`node id = ${id}`);
-  node.transport.signalClient.simpleSignalClient.getRandomNodeId(id);
-  node.transport.signalClient.simpleSignalClient.on('dispatch', function(metadata){
-    console.log("Browser-Demo: caught dispatch event");
-    console.log("selfId: " + metadata.selfId + " targetId: " + metadata.targetId);
+  node.transport.messageClient.signalClient.getRandomNodeId(nodeId);
+  node.transport.messageClient.signalClient.on('dispatch', function(metadata){
     if (metadata.selfId !== metadata.targetId) {
       console.log("Browser-Demo: about to join random Node given by root server");
       node.join([metadata.targetId,
         {}],
       () => {
         node.logger.info(`Connected to ${node.router.size} peers!`);
-        // console.log(`Connected to ${node.router.size} peers!`);
     });
     } else {
       console.log("Browser-Demo: network does not have any nodes yet");
@@ -38,8 +34,6 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
   })
 
   alert("Node launched!");
-
-  // document.getElementById("nodeid").innerHTML = node.identity.toString('hex');
 });
 
 document.querySelector('#joinNode').addEventListener('submit', (e) => {
