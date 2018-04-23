@@ -36,6 +36,6 @@
     "socket.io": "^2.0.4"
   },
   "devDependencies": {
-    "browserify": "^16.1.1"
+    "browserify": "^16.2.0"
   }
 }

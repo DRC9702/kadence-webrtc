@@ -23,7 +23,7 @@ externalip(function (err, ip) {
   var ioServer = socketIO(httpServer);
   var signalServer = new SignalServer(ioServer);
 
-  console.log("Listening on: http://" + ip + ":" + port);
+  console.log("Listening on: http://" + ip + ":" + port + "/example/index.html");
 });
 
 
