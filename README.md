@@ -38,10 +38,11 @@ Demo works with nodes joining the network through other nodes.
 ---
 
 Documentation
+=============
 
-# Classes
+## Classes
 
-## SignalServer
+### `SignalServer`
 **source:**
 > [/lib/signal-server.js](https://github.com/DRC9702/kadence-webrtc/blob/master/lib/signal-server.js)
 
@@ -100,7 +101,7 @@ onAnswer(socket, data)
 Called as a callback from `socket.on('answer', ...)`.
 Forwards the answer signal to the target node.
 
-## WebRTCTransport
+### `WebRTCTransport`
 **source:**
 > [lib/transport.js](https://github.com/DRC9702/kadence-webrtc/blob/master/lib/transport.js)
 
@@ -124,9 +125,9 @@ _write([id, buffer, target], encoding, callback)
 Implements the writable interface of a duplex stream. In WebRTCTransport it calls `SignalManager.sendMessage`.
 
 
-# Example
+## Example
 
-## root-server
+### `root-server`
 > [/example/root-server.js](https://github.com/DRC9702/kadence-webrtc/blob/master/example/root-server.js)
 
 Represents a file server that serves html files to webpages
@@ -137,7 +138,7 @@ Represents a file server that serves html files to webpages
 
 - Has to maintain an instance of `lib/signal-server.js` class, which handles requests to join the network
 
-## browser-demo
+### `browser-demo`
 **source:**
 > [/example/browser-demo.js](https://github.com/DRC9702/kadence-webrtc/blob/master/example/browser-demo.js)
 
