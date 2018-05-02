@@ -14,10 +14,9 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
 
   node = new kadence.KademliaNode({
     identity: nodeId,
-    transport: new WebRTCTransport({nodeID: nodeId}),
+    transport: new WebRTCTransport({nodeID: nodeId, host:'127.0.0.1', port:8080}),
     storage: level('storage.db'),
   });
-  node.listen();
 
   node.transport.connectionManager.signalCoupler.getRandomNodeId(nodeId);
   node.transport.connectionManager.signalCoupler.on('dispatch', function(metadata){
@@ -31,9 +30,19 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
     } else {
       console.log("Browser-Demo: network does not have any nodes yet");
     }
-  })
+  });
 
+  node.use('STORE', (request, response, next) => {
+    console.log(request);
+    var hashedKey = request.params[0];
+    var value = request.params[1].value.toString();
+    document.getElementById("storedValues").innerHTML = document.getElementById("storedValues").innerHTML + "<br/>" + value + " - " + hashedKey;
+    next();
+  });
+
+  node.listen();
   alert("Node launched!");
+
 });
 
 document.querySelector('#joinNode').addEventListener('submit', (e) => {
