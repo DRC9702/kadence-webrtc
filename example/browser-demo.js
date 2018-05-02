@@ -19,8 +19,8 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
   });
   node.listen();
 
-  node.transport.messageClient.signalClient.getRandomNodeId(nodeId);
-  node.transport.messageClient.signalClient.on('dispatch', function(metadata){
+  node.transport.connectionManager.signalCoupler.getRandomNodeId(nodeId);
+  node.transport.connectionManager.signalCoupler.on('dispatch', function(metadata){
     if (metadata.selfId !== metadata.targetId) {
       console.log("Browser-Demo: about to join random Node given by root server");
       node.join([metadata.targetId,
