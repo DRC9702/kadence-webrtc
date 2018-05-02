@@ -14,7 +14,7 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
 
   node = new kadence.KademliaNode({
     identity: nodeId,
-    transport: new WebRTCTransport({nodeID: nodeId}),
+    transport: new WebRTCTransport({nodeID: nodeId, host:'127.0.0.1', port:8080}),
     storage: level('storage.db'),
   });
 
