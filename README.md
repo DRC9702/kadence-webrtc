@@ -1,5 +1,8 @@
 # Kadence-WebRTC
 
+## Before running the demo:
+Make sure you have browserify installed
+
 ## How to run demo:
 
 1. `npm install`
