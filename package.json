@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "simple kadence demo using webrtc",
   "main": "./example/signal-server.js",
+  "browser": {
+    "signal-server": false
+  },
   "scripts": {
     "demo": "rm ./example/bundle.js ; browserify --entry ./example/browser-demo.js > ./example/bundle.js && node ./example/root-server.js"
   },
