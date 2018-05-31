@@ -15,6 +15,9 @@ cp kadence-browser-package.json node_modules/@kadenceproject/kadence/package.jso
 
 And then redirect browser to `localhost:8080/example/index.html`.
 
+### Demo Specs
+After `index.html` if you want to speed up typing (for larger demo purposes) you can include a # and $ such as: `index.html#<NODENAMEFIELDVALUE>$<JOINFIELDVALUE>`
+
 ## Probable Issues With Your Installing:
 You might face similar issues to me about complaints from `node-gyp`. If this happens, set your node python version to 2.7 (and change it back when you're done).
 

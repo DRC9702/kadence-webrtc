@@ -5,6 +5,12 @@ var WebRTCTransport = require('../lib/transport');
 
 var node;
 
+var hashContent = window.location.hash;
+if(hashContent.includes("#") && hashContent.includes("$")){
+  document.getElementById("nodeName").value = hashContent.substr(1,hashContent.indexOf("$")-1);
+  document.getElementById("targetName").value = hashContent.substr(hashContent.indexOf("$")+1);
+}
+
 document.querySelector('#makeNode').addEventListener('submit', (e) => {
   // Prevent page refresh
   e.preventDefault();
@@ -14,23 +20,23 @@ document.querySelector('#makeNode').addEventListener('submit', (e) => {
 
   node = new kadence.KademliaNode({
     identity: nodeId,
-    transport: new WebRTCTransport({nodeID: nodeId, host:'127.0.0.1', port:8080}),
+    transport: new WebRTCTransport({nodeID: nodeId, host:'127.0.0.1', port:8080, connectionLimit : 10}),
     storage: level('storage.db'),
   });
 
-  node.transport.connectionManager.signalCoupler.getRandomNodeId(nodeId);
-  node.transport.connectionManager.signalCoupler.on('dispatch', function(metadata){
-    if (metadata.selfId !== metadata.targetId) {
-      console.log("Browser-Demo: about to join random Node given by root server");
-      node.join([metadata.targetId,
-        {}],
-      () => {
-        node.logger.info(`Connected to ${node.router.size} peers!`);
-    });
-    } else {
-      console.log("Browser-Demo: network does not have any nodes yet");
-    }
-  });
+  // node.transport.connectionManager.signalCoupler.getRandomNodeId(nodeId);
+  // node.transport.connectionManager.signalCoupler.on('dispatch', function(metadata){
+  //   if (metadata.selfId !== metadata.targetId) {
+  //     console.log("Browser-Demo: about to join random Node given by root server");
+  //     node.join([metadata.targetId,
+  //       {}],
+  //     () => {
+  //       node.logger.info(`Connected to ${node.router.size} peers!`);
+  //   });
+  //   } else {
+  //     console.log("Browser-Demo: network does not have any nodes yet");
+  //   }
+  // });
 
   node.use('STORE', (request, response, next) => {
     console.log(request);
@@ -96,4 +102,9 @@ document.querySelector('#getKV').addEventListener('submit', (e) => {
     }
     alert(`Value: ${result.value} - ${result.publisher}`);
   });
+});
+
+document.querySelector('#getDN').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert(`Direct Neighbors: ${node.transport.connectionManager.nodeList.toString()}`);
 });
