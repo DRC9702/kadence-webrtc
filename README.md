@@ -59,3 +59,4 @@ Testing this with t=3 and 7 nodes, all of the nodes eventually stabilize their d
 - Additionally, entire network seems to die after the first node fails. Need to fix this.
 
 Setting t=10, 20 nodes run comfortably on <200% cpu, averaging (6-9) neighbors each.
+

@@ -108,3 +108,8 @@ document.querySelector('#getDN').addEventListener('submit', (e) => {
   e.preventDefault();
   alert(`Direct Neighbors: ${node.transport.connectionManager.nodeList.toString()}`);
 });
+
+document.querySelector('#getKN').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert(`Number of Kademlia Neighbors: ${node.router.size}`);
+});
